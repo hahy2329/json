@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="human">
+	<select id="searchFunction" parameterType="String" resultType="UserDTO">
+	
+		SELECT 
+			*
+		FROM 
+			USER
+		WHERE 
+		  	USERNAME LIKE CONCAT('%', #{username}, '%') OR
+		  	USERGENDER LIKE CONCAT('%', #{username}, '%') OR
+		  	USEREMAIL LIKE CONCAT('%', #{username}, '%')
+	
+	</select>
+	
+	<select id="allHumanList" resultType="UserDTO">
+	 	
+	 	SELECT 
+	 		*
+	 	FROM 
+	 		USER
+	
+	</select>
+	
+	<insert id="addHuman" parameterType="UserDTO">
+		
+		INSERT INTO USER
+		
+		VALUES(
+			#{username},
+			#{userage},
+			#{usergender},
+			#{useremail}
+		)
+		
+	
+	
+	</insert>
+</mapper>
